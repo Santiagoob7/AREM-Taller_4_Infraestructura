@@ -5,7 +5,7 @@ Taller 4 - Mapa de Infraestructura y Diagnóstico Técnico
 
 ## 👥 Integrantes del equipo
 * David Santiago Buendia Londoño (Santiagoob7)
-* [Espacio para que Jorge agregue su nombre y usuario al hacer el commit]
+* Jorge Steven Doncel (gevengood)
 
 ## 🧠 Descripción general del trabajo
 El objetivo de este taller fue levantar el mapa de infraestructura actual (AS-IS) de Insuclínicos Ltda., enfocado en el macro-proceso de Gestión y Cumplimiento de Pedido. A través de este ejercicio, se realizó un diagnóstico técnico para identificar puntos únicos de falla, cuellos de botella y límites de escalabilidad en un entorno operado casi en su totalidad mediante herramientas ofimáticas locales ("Shadow IT") y transporte manual de información.
