@@ -5,7 +5,7 @@
 
 ## 👥 Integrantes presentes
 * David Santiago Buendia Londoño
-* [Espacio para Jorge]
+* Jorge Steven Doncel 
 
 ## 🧠 Actividades realizadas en clase
 * **Discusión de equipo:** Analizamos cómo estructurar el mapa de infraestructura para una empresa que no usa servidores formales ni servicios cloud propios. 
