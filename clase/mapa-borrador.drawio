@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Mapa-Infraestructura-RedExpress" id="infra-redexpress">
+    <mxGraphModel dx="1500" dy="950" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1250" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ZONA 1: CLIENTES -->
+        <mxCell id="z_clientes" value="&lt;b&gt;Zona: Clientes (Puntos de Entrada)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#5F7387;strokeWidth=2;dashed=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontColor=#14263C;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="240" height="440" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cli_usuario" value="&lt;b&gt;App Móvil — Usuario Final&lt;/b&gt;&lt;div&gt;[Cliente Móvil iOS/Android]&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2E75B6;strokeColor=#1F4E79;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="70" y="110" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cli_mensajero" value="&lt;b&gt;App Móvil — Mensajero&lt;/b&gt;&lt;div&gt;[Cliente Móvil GPS/Campo]&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2E75B6;strokeColor=#1F4E79;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="70" y="240" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cli_operador" value="&lt;b&gt;Portal Web — Operador&lt;/b&gt;&lt;div&gt;[Navegador Web Desktop]&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2E75B6;strokeColor=#1F4E79;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="70" y="370" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ZONA 2: BORDE / GLOBAL -->
+        <mxCell id="z_borde" value="&lt;b&gt;Zona: Borde / Global (Infraestructura Compartida)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#5F7387;strokeWidth=2;dashed=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontColor=#14263C;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="60" width="320" height="660" as="geometry" />
+        </mxCell>
+
+        <!-- RIESGO 1: Balanceador instancia unica -->
+        <mxCell id="srv_lb" value="&lt;b&gt;⚠️ Balanceador de Carga&lt;/b&gt;&lt;div&gt;[Instancia Única - Sin Failover]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Riesgo Alta Prioridad: Punto único de falla (SPOF)&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0392B;strokeColor=#7B1F1F;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="220" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="srv_monitor" value="&lt;b&gt;Servicio de Monitoreo y Alertas&lt;/b&gt;&lt;div&gt;[Servidor Central de Logs]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#14263C;strokeColor=#0D1A29;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="390" width="240" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- RIESGO 2: Base de Datos escritura unica -->
+        <mxCell id="srv_db" value="&lt;b&gt;⚠️ Base de Datos Distribuida&lt;/b&gt;&lt;div&gt;[Escritura Única en Bogotá]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Riesgo Alta Prioridad: Cuello de botella de latencia&lt;/font&gt;&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#C0392B;strokeColor=#7B1F1F;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="540" width="240" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- ZONA 3: REGION BOGOTA -->
+        <mxCell id="z_bogota" value="&lt;b&gt;Zona: Región Bogotá (Nodo Principal)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1C7150;strokeWidth=2;dashed=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontColor=#1C7150;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="60" width="420" height="310" as="geometry" />
+        </mxCell>
+
+        <mxCell id="srv_gwbog" value="&lt;b&gt;API Gateway — Bogotá&lt;/b&gt;&lt;div&gt;[Nodo Regional Activo]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#14263C;strokeColor=#0D1A29;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="780" y="110" width="340" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="srv_rutasbog" value="&lt;b&gt;Módulo de Procesamiento de Rutas y Paquetes — Bogotá&lt;/b&gt;&lt;div&gt;[Servidor de Cómputo Centralizado]&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#14263C;strokeColor=#0D1A29;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="780" y="240" width="340" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ZONA 4: REGION MEDELLIN -->
+        <mxCell id="z_medellin" value="&lt;b&gt;Zona: Región Medellín (Nodo Secundario Incompleto)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#C0392B;strokeWidth=2;dashed=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontColor=#C0392B;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="420" width="420" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- RIESGO 3: Gateway Medellin sin modulo propio -->
+        <mxCell id="srv_gwmed" value="&lt;b&gt;⚠️ API Gateway — Medellín&lt;/b&gt;&lt;div&gt;[Sin Módulo de Rutas Propio]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Riesgo Media Prioridad: Límite de escalabilidad geográfica&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C0392B;strokeColor=#7B1F1F;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="780" y="480" width="340" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- CONEXIONES -->
+        <mxCell id="e1" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1F4E79;strokeWidth=2;" edge="1" parent="1" source="cli_usuario" target="srv_lb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1F4E79;strokeWidth=2;" edge="1" parent="1" source="cli_mensajero" target="srv_lb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1F4E79;strokeWidth=2;" edge="1" parent="1" source="cli_operador" target="srv_lb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" value="Enruta tráfico Bogotá" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#14263C;strokeWidth=2;" edge="1" parent="1" source="srv_lb" target="srv_gwbog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e5" value="Enruta tráfico Medellín" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#14263C;strokeWidth=2;" edge="1" parent="1" source="srv_lb" target="srv_gwmed">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e6" value="Procesamiento local" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#14263C;strokeWidth=2;" edge="1" parent="1" source="srv_gwbog" target="srv_rutasbog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e7" value="⚠️ Cuello de botella (Dependencia interregional)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#C0392B;strokeWidth=2.5;fontColor=#C0392B;fontStyle=1;" edge="1" parent="1" source="srv_gwmed" target="srv_rutasbog">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="530" />
+              <mxPoint x="1140" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e8" value="Lectura / Escritura SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#C0392B;strokeWidth=2;" edge="1" parent="1" source="srv_rutasbog" target="srv_db">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="285" />
+              <mxPoint x="700" y="605" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="e9" value="Telemetría / Logs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#5F7387;strokeWidth=1.5;" edge="1" parent="1" source="srv_gwbog" target="srv_monitor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e10" value="Telemetría / Logs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeColor=#5F7387;strokeWidth=1.5;" edge="1" parent="1" source="srv_gwmed" target="srv_monitor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
